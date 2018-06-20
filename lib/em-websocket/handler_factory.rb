@@ -69,7 +69,7 @@ module EventMachine
         end
 
         # Validate that Connection and Upgrade headers
-        unless request['connection'] && request['connection'].downcase == 'upgrade' && request['upgrade'] && request['upgrade'].downcase == 'websocket'
+        unless request['connection'] && request['connection'] =~ /upgrade/i && request['upgrade'] && request['upgrade'].downcase == 'websocket'
           raise HandshakeError, "Connection and Upgrade headers required"
         end
 
